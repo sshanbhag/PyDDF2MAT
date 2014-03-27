@@ -24,8 +24,8 @@ nspath = "c:\\users\\sshanbhag\\appdata\\local\\enthought\\canopy32\\user\\lib\\
 import sys
 # import os methods
 import os
-# import getopt
-import getopt
+# import argument parser
+import argparse
 # import sjs_utils
 from sjs_utils import *
 # import PyDDF_Info
@@ -66,30 +66,18 @@ def main(argv):
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
     # parse input args
-    #--------------------------------------------------------------------------
-    if len(argv) > 1:
-        helpstr = 'ddf2text.py -i <input .ddf file> -o <output .txt file>'
-        try:
-            opts, args = getopt.getopt(argv, 'hi:o:', ['ifile=', 'ofile='])
-            print 'opts: ', opts
-            print 'args: ',args
-        except getopt.GetoptError as err:
-            print str(err)
-            print helpstr
-            sys.exit(2)
-    
-        for opt, arg in opts:
-            if opt in ('-h', '-help'):
-                print helpstr
-                sys.exit()
-            elif opt in ('-i'):
-                fullfile = arg
-            elif opt in ('-o'):
-                outfile = arg
-                
-        print "Reading data from:", fullfile
-        print "Writing data to:", outfile
-    
+    #--------------------------------------------------------------------------   
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--infile', 
+                            help = '.ddf file for input', 
+                            default = '')
+    parser.add_argument('-o', '--outfile', 
+                            help = '.txt file for output', 
+                            default = '')
+    args = parser.parse_args(argv)
+    # assign to fullfile and outfile
+    fullfile = args.infile
+    outfile = args.outfile
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
     
@@ -145,6 +133,7 @@ def main(argv):
     print '\toutput name: %s' % outname
     print sepstr
     print('\n')
+
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
     
@@ -228,9 +217,6 @@ def main(argv):
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
 if __name__ == "__main__":
-#    print "IN PYDD2MAT __main__"
-#    print sys.argv
-    print "\nNow executing main function"
     main(sys.argv[1:])
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 # convertscript
 
 import pyddf2mat
-
+reload(pyddf2mat)
 # import os
 import os
 import sys
@@ -30,14 +30,13 @@ for afile in filelist:
         print "writing to:\n\t", outfile
         print "\n"
         
-        argv = ['-i ' + infile, '-o ' + outfile]
-        
-        print argv
-        
+        # create list of arguments
+        argv = ['-i', infile, '-o', outfile]
+
         pyddf2mat.main(argv)
         
         nprocessed = nprocessed + 1
         
-        if nprocessed == 1:
+        if nprocessed == 5:
             sys.exit()
         
