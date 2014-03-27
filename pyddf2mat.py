@@ -165,15 +165,42 @@ def main(argv):
     #--------------------------------------------------------------------------
     # find and load event for R channel (Marker - from DataWave) data
     #--------------------------------------------------------------------------
-    # !!!!!!!ASSUME that right channel marker is entity 5!!!!!!!!!!!
-    markerR = F.entities[5]
+    # Find R channel marker in ent labels
+    nlabels = len(entlabels)
+    rindex = None
+    # loop through labels
+    for n in range(0, nlabels):
+        # see if 'Right' is in entlabels[n]
+        if 'Right' in entlabels[n]:
+            # store index
+            rindex = n
+            
+    # exit if Right not found
+    if rindex == None:
+        print 'Right markers not found!'
+        sys.exit(2)
+        
+    # get markerR entity
+    markerR = F.entities[rindex]
     writeMarkerToText(markerR, outfile, 'a')
     
     #--------------------------------------------------------------------------
     # find and load event for L channel (Marker - from DataWave) data
     #--------------------------------------------------------------------------
-    # !!!!!!!ASSUME that left channel marker is entity 6!!!!!!!!!!!
-    markerL = F.entities[6]
+    # Find L channel marker in ent labels
+    lindex = None
+    # loop through labels
+    for n in range(0, nlabels):
+        # see if 'Left' is in entlabels[n]
+        if 'Left' in entlabels[n]:
+            # store index
+            lindex = n
+            
+    # exit if Right not found
+    if lindex == None:
+        print 'Left markers not found!'
+        sys.exit(2)
+    markerL = F.entities[lindex]
     writeMarkerToText(markerL, outfile, 'a')
     
     #--------------------------------------------------------------------------

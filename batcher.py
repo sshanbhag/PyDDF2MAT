@@ -4,19 +4,24 @@ import pyddf2mat
 reload(pyddf2mat)
 # import os
 import os
-import sys
 
-
-
-inpath = 'F:\\Work\\Data\\Bat\\BatRestrainedData\\BatSorted\\866_Sorted'
+inpath = 'F:\\Work\\Data\\Bat\\BatRestrainedData\\BatSorted\\878_Sorted'
 outpath = 'F:\\Work\\Data\\Bat\\BatRestrainedData\\TextData'
 
 filelist = os.listdir(inpath)
+ddffiles = [];
 
 nprocessed = 0;
 for afile in filelist:
     if afile.endswith('.ddf'):
+        ddffiles.append(afile)
 
+nfiles = len(ddffiles)
+print 'Found {0} ddf files'.format(nfiles)
+
+for findex in range(0, nfiles):
+        afile = ddffiles[findex]
+        
         # split extension and base name
         filebase, fileext = os.path.splitext(afile)
         
@@ -34,9 +39,4 @@ for afile in filelist:
         argv = ['-i', infile, '-o', outfile]
 
         pyddf2mat.main(argv)
-        
-        nprocessed = nprocessed + 1
-        
-        if nprocessed == 5:
-            sys.exit()
         

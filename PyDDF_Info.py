@@ -1,7 +1,4 @@
 
-
-
-
 # import plotting methods from matplotlib
 import matplotlib.pyplot as plt
 # need numpy for array manipulation
