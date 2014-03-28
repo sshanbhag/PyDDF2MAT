@@ -12,8 +12,13 @@ takes ddf file, writes segment and marker data to text file
 #------------------------------------------------------------------------------
 # path for neuroshare package: this is where the setup.py script for
 # neuroshare installs the compiled/bundled neuroshare-python package
+<<<<<<< HEAD
 # (will append user's home path shortly...)
 nspath = "appdata\\local\\enthought\\canopy32\\user\\lib\\site-packages"
+=======
+# ** note that the file will be installed as neuroshare-xxxx-win32.egg **
+nspath = "c:\\users\\sshanbhag\\appdata\\local\\enthought\\canopy32\\user\\lib\\site-packages"
+>>>>>>> added comment
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
 
