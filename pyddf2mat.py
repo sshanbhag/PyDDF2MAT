@@ -12,7 +12,8 @@ takes ddf file, writes segment and marker data to text file
 #------------------------------------------------------------------------------
 # path for neuroshare package: this is where the setup.py script for
 # neuroshare installs the compiled/bundled neuroshare-python package
-nspath = "c:\\users\\sshanbhag\\appdata\\local\\enthought\\canopy32\\user\\lib\\site-packages"
+# (will append user's home path shortly...)
+nspath = "appdata\\local\\enthought\\canopy32\\user\\lib\\site-packages"
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
 
@@ -34,6 +35,10 @@ from PyDDF_Info import *
 from PyDDF_TextOutput import *
 
 # before loading neuroshare module, check that it can be found!
+# first need to append users home directory
+# get user's home directory
+homepath = os.path.expanduser('~')
+nspath = os.path.join(homepath, nspath)
 if nspath not in sys.path: 
     sys.path.append(nspath)
     print "Appending " + nspath + " to path"
@@ -171,7 +176,7 @@ def main(argv):
     # loop through labels
     for n in range(0, nlabels):
         # see if 'Right' is in entlabels[n]
-        if 'Right' in entlabels[n]:
+        if ('Right' in entlabels[n]) and ('Marker' in entlabels[n]):
             # store index
             rindex = n
             
@@ -192,7 +197,7 @@ def main(argv):
     # loop through labels
     for n in range(0, nlabels):
         # see if 'Left' is in entlabels[n]
-        if 'Left' in entlabels[n]:
+        if ('Left' in entlabels[n]) and  ('Marker' in entlabels[n]):
             # store index
             lindex = n
             
