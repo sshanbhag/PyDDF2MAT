@@ -1,3 +1,12 @@
+pyddf
+
+uses python bindings for neuroshare in order to access DataWave .ddf
+binary files and convert to text file output.
+
+requires the neuroshare python api from gnode project
+
+
+
 Python Bindings for Neuroshare
 ==============================
 
