@@ -1,4 +1,11 @@
 ===========================================================================
+=======
+pyddf
+
+uses python bindings for neuroshare in order to access DataWave .ddf
+binary files and convert to text file output.
+
+requires the neuroshare python api from gnode project
 ===========================================================================
 
 This is a small bit of code I have written to convert DataWave Technologies’
@@ -17,12 +24,13 @@ sshanbhag@neomed.edu
 ===========================================================================
 
 
-
 ===========================================================================
 ===========================================================================
 Some other bits of info from code that is used in this project:
 ===========================================================================
 ===========================================================================
+
+
 
 
 Python Bindings for Neuroshare
