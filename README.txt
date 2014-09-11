@@ -1,3 +1,30 @@
+===========================================================================
+===========================================================================
+
+This is a small bit of code I have written to convert DataWave Technologies’
+.ddf format files to a text format that can then be imported into other
+analysis programs (in my case, Matlab).
+
+Note that SciWorks from DataWave must be installed on your system in order for
+the dll information to be used properly on Windows.  The hardlock USB key is, however, not necessary to use this code.  
+
+I am running this code in a virtual environment installation of Windows 7
+(32 bit) in a Mac OS X host.
+
+Sharad J. Shanbhag
+sshanbhag@neomed.edu
+===========================================================================
+===========================================================================
+
+
+
+===========================================================================
+===========================================================================
+Some other bits of info from code that is used in this project:
+===========================================================================
+===========================================================================
+
+
 Python Bindings for Neuroshare
 ==============================
 

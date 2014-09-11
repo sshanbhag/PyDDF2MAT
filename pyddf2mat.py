@@ -26,18 +26,21 @@ nspath = "appdata\\local\\enthought\\canopy32\\user\\lib\\site-packages"
 #------------------------------------------------------------------------------
 # import needed modules (neuroshare, Tkinter, etc)
 #------------------------------------------------------------------------------
-# import sys (for exit, checking path)
-import sys
 # import os methods
 import os
+# import sys (for exit, checking path)
+import sys
 # import argument parser
 import argparse
 # import sjs_utils
-from sjs_utils import *
+from sjs_utils import get_directory, get_filename, warn_dialog
 # import PyDDF_Info
-from PyDDF_Info import *
+from PyDDF_Info import entity_info, get_entity_info, find_segment_entities, \
+    plot_segments
+    
 # import PyDDF_TextOutput
-from PyDDF_TextOutput import *
+from PyDDF_TextOutput import writeMetadataText, writeEntityInfoText, \
+    writeMarkerToText, writeSegmentToText
 
 # before loading neuroshare module, check that it can be found!
 # first need to append users home directory
@@ -75,7 +78,7 @@ def main(argv):
         
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
-    # parse input args
+    # parse input args for input file and output file
     #--------------------------------------------------------------------------   
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--infile', 
@@ -93,7 +96,7 @@ def main(argv):
     
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
-    # Get File names
+    # Get File names if not provided (fullfile or outfile)
     #--------------------------------------------------------------------------
     # check if fullfile is set or if file in fullfile doesn't exist
     if fullfile != '':
@@ -132,6 +135,7 @@ def main(argv):
     else:
         outpath, outname = os.path.splitext(outfile)
     
+    # display file information
     print sepstr
     print 'Input File:'
     print '\tfile path: %s' % filepath
@@ -206,7 +210,7 @@ def main(argv):
             # store index
             lindex = n
             
-    # exit if Right not found
+    # exit if Left markers not found
     if lindex == None:
         print 'Left markers not found!'
         sys.exit(2)
@@ -252,6 +256,7 @@ def main(argv):
 #------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
+#"trick" to pass input arguments to main routine in pyddf2mat
 #------------------------------------------------------------------------------
 if __name__ == "__main__":
     main(sys.argv[1:])
