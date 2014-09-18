@@ -79,18 +79,22 @@ def main(argv):
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
     # parse input args for input file and output file
-    #--------------------------------------------------------------------------   
-    parser = argparse.ArgumentParser()
+    #--------------------------------------------------------------------------
+    parser = argparse.ArgumentParser(description='process ddf file to txt')
     parser.add_argument('-i', '--infile', 
                             help = '.ddf file for input', 
                             default = '')
     parser.add_argument('-o', '--outfile', 
                             help = '.txt file for output', 
                             default = '')
+                            
+
     args = parser.parse_args(argv)
     # assign to fullfile and outfile
     fullfile = args.infile
     outfile = args.outfile
+    print 'input file: ' + fullfile
+    print 'output file: ' + outfile
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
     
