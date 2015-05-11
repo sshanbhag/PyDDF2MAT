@@ -196,11 +196,11 @@ def main(argv):
     # exit if Right not found
     if rindex == None:
         print 'Right markers not found!'
-        sys.exit(2)
-        
-    # get markerR entity
-    markerR = F.entities[rindex]
-    writeMarkerToText(markerR, outfile, 'a')
+        # sys.exit(2)
+    else:
+        # get markerR entity
+        markerR = F.entities[rindex]
+        writeMarkerToText(markerR, outfile, 'a')
     
     #--------------------------------------------------------------------------
     # find and load event for L channel (Marker - from DataWave) data
@@ -217,9 +217,10 @@ def main(argv):
     # exit if Left markers not found
     if lindex == None:
         print 'Left markers not found!'
-        sys.exit(2)
-    markerL = F.entities[lindex]
-    writeMarkerToText(markerL, outfile, 'a')
+        # sys.exit(2)
+    else:
+        markerL = F.entities[lindex]
+        writeMarkerToText(markerL, outfile, 'a')
     
     #--------------------------------------------------------------------------
     # find, load, write, plot segment (spike snippet) data
