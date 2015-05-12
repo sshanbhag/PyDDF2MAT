@@ -36,11 +36,11 @@ import argparse
 from sjs_utils import get_directory, get_filename, warn_dialog
 # import PyDDF_Info
 from PyDDF_Info import entity_info, get_entity_info, find_segment_entities, \
-    plot_segments
+    plot_segments, find_analog_entities, print_analog_info
     
 # import PyDDF_TextOutput
 from PyDDF_TextOutput import writeMetadataText, writeEntityInfoText, \
-    writeMarkerToText, writeSegmentToText
+    writeMarkerToText, writeSegmentToText, writeAnalogToText
 
 # before loading neuroshare module, check that it can be found!
 # first need to append users home directory
@@ -244,13 +244,31 @@ def main(argv):
     #--------------------------------------------------------------------------
     # Access analog signal data::
     #--------------------------------------------------------------------------
-    '''
-    # select analog signal entity
-    analog0 = F.entities[0]
-    # load data from entity
-    analogdata, times, count = analog0.get_data()
-    '''
-    
+    isanalog, analog_indices = find_analog_entities(F)
+    # check if any analog entities were found
+    if len(analog_indices) == 0:
+        # none found, quit script
+        print "No Analog Entities Found in file ", fullfile 
+    else:
+        for s in analog_indices: 
+            # need to convert to int
+            anaindx = int(s)
+            # get the entity corresponding to segindx
+            anadata = F.entities[anaindx]
+            print "analog index ", anaindx
+            print_analog_info(anadata)
+
+        # select analog signal entity
+        print " "
+        print "******************************************************"
+        analog0 = F.entities[int(analog_indices[0])]
+        # load data from entity
+        analogdata, times, count = analog0.get_data()
+        print_analog_info(analog0)
+        print "Points read: ", count
+        print "Writing to file ", outfile
+        writeAnalogToText(analog0, outfile, 'a')
+        print "******************************************************"
     #--------------------------------------------------------------------------
     # Close neuroshare object/interface
     #--------------------------------------------------------------------------

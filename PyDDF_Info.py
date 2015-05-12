@@ -102,6 +102,61 @@ def find_segment_entities(nsobj):
 
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
+# find analog data
+#------------------------------------------------------------------------------
+def find_analog_entities(nsobj):
+    isanalog = []
+    
+    # get entity information
+    entlabels, enttypes, entnames = get_entity_info(nsobj)
+
+    # loop through entity names list and check for 'Segment'
+    for n in entnames:
+        if n is 'Analog':
+            isanalog.append('True')
+        else:
+            isanalog.append('False')
+            
+    # convert isanalog to NumPy array - this will allow use of np array's "where"
+    # method while looking for analog channel
+    isanalog = np.array(isanalog)
+
+    # find segments
+    analog_indices = np.where(isanalog == 'True')[0]
+    
+    return (isanalog, analog_indices)
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+# print analog entity information
+#------------------------------------------------------------------------------
+def print_analog_info(anobj):
+    print "Fs: ", anobj.sample_rate
+    print "min value: ", anobj.min_value
+    print "max value: ", anobj.max_value
+    print "resolution:", anobj.resolution
+#    print "units :", anobj.units
+    print "location x:", anobj.location_x
+    print "location y:", anobj.location_y
+    print "location z:", anobj.location_z
+    print "location_user:", anobj.location_user
+    print "high freq Fc:", anobj.high_freq_corner
+    print "high freq order:", anobj.high_freq_order
+    print "high freq type:", anobj.high_filter_type
+    print "low freq Fc:", anobj.low_freq_corner
+    print "low freq order:", anobj.low_freq_order
+    print "low freq type:", anobj.low_filter_type
+    print "probe info:", anobj.probe_info
+    
+    return 
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+
+
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # plot segments
 #------------------------------------------------------------------------------
 def plot_segments(segment_indices, nsobj):
