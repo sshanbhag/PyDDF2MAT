@@ -1,6 +1,6 @@
 ===========================================================================
-=======
-pyddf
+===========================================================================
+pyddf2mat.py
 
 uses python bindings for neuroshare in order to access DataWave .ddf
 binary files and convert to text file output.
@@ -16,7 +16,7 @@ Note that SciWorks from DataWave must be installed on your system in order for
 the dll information to be used properly on Windows.  The hardlock USB key is, however, not necessary to use this code.  
 
 I am running this code in a virtual environment installation of Windows 7
-(32 bit) in a Mac OS X host.
+(32 bit) in a Mac OS X host. It has also been tested on the “batrig” machine in the lab.
 
 Sharad J. Shanbhag
 sshanbhag@neomed.edu
