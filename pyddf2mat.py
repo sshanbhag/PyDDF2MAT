@@ -262,12 +262,19 @@ def main(argv):
         print " "
         print "******************************************************"
         analog0 = F.entities[int(analog_indices[0])]
-        # load data from entity
-        analogdata, times, count = analog0.get_data()
+        # Show data from entity
         print_analog_info(analog0)
-        print "Points read: ", count
-        print "Writing to file ", outfile
-        writeAnalogToText(analog0, outfile, 'a')
+        
+        
+        # build analog file name and path
+        # split file into path and name, first "normalizing" path
+        tmppath, tmpname = os.path.split(os.path.normpath(outfile))
+        # split extension and base name
+        outbase, outext = os.path.splitext(tmpname)
+        analogfile = os.path.join(outpath, outbase + '_analog0' + outext)
+        
+        # write entity data to output file
+        writeAnalogToText(analog0, analogfile, 'w')
         print "******************************************************"
     #--------------------------------------------------------------------------
     # Close neuroshare object/interface

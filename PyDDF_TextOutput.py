@@ -11,6 +11,7 @@
 #------------------------------------------------------------------------------
 # Created 26 March, 2014
 #------------------------------------------------------------------------------
+# 
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
 
@@ -192,11 +193,16 @@ def writeMarkerToText(marker, outfilename, mode):
 #------------------------------------------------------------------------------
 def writeAnalogToText(analogobj, outfilename, mode):
     # get data for analog object
+    print "Reading analog data... "
     analogdata, times, count = analogobj.get_data()
+    print "... done."
+    
+    print "Points read: ", count
+    print "Writing to file ", outfilename
+
     # take action depending on outfilename
     if outfilename == 0:
         # if empty, write to screen
-#        for n in range(0, analogdata.size):
         for n in range(0, count):
             print analogdata[n]
     else:
@@ -209,12 +215,13 @@ def writeAnalogToText(analogobj, outfilename, mode):
             # sample rate (samples/sec)
             fp.write('SampleRate:{0}\n'.format(analogobj.sample_rate))
             # number of samples
-#            fp.write('Nsamples:{0}\n'.format(analogdata.size))
-#            for n in range(0, analogdata.size):
             fp.write('Nsamples:{0}\n'.format(count))
-            for n in range(0, count):
-                fp.write('{0},\n'.format(analogdata[n]))
-
+            # write analog data
+ #           for n in range(0, count):
+ #           fp.write('{0},\n'.format(analogdata[n]))
+            print "Writing analog data to file ", outfilename, " ..."
+            np.savetxt(fp, analogdata, fmt='%.6f', delimiter=',')
+            print "... done"
     return
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
